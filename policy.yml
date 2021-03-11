@@ -1,0 +1,14 @@
+- name: "allow dns from apps"
+  tags:
+    - infra
+  source_zones:
+    - app
+  source_addresses:
+    - 10.0.0.0/8
+  destination_zones:
+    - dmz
+  destination_addresses:
+    - 8.8.8.8
+  applications:
+    - ssl
+  action: "allow"
