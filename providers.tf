@@ -6,11 +6,9 @@ terraform {
     }
   }
 
-  backend "remote" {
-    organization = "migara"
-    workspaces {
-      name = "policy-as-code"
-    }
+  backend "s3" {
+    bucket = "regional-training-2021-gh-actions"
+    key    = "gh-actions-pac"
   }
 }
 

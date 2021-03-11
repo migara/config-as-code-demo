@@ -66,9 +66,5 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        env:
-          PANOS_HOSTNAME: ${{ secrets.PANOS_HOSTNAME }}
-          PANOS_USERNAME: ${{ secrets.PANOS_USERNAME }}
-          PANOS_PASSWORD: ${{ secrets.PANOS_PASSWORD }}
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         run: terraform apply -auto-approve
