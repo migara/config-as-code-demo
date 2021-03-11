@@ -10,5 +10,20 @@
   destination_addresses:
     - 8.8.8.8
   applications:
+    - dns
+  action: "allow"
+
+
+- name: "allow internet from bizdev"
+  tags:
+    - internet
+  source_zones:
+    - bizdev
+  source_addresses:
+    - 192.168.10.0/24
+  destination_zones:
+    - untrust
+  applications:
     - ssl
+    - web
   action: "allow"
