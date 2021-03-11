@@ -25,5 +25,5 @@
     - untrust
   applications:
     - ssl
-    - web
+    - web-browsing
   action: "allow"
