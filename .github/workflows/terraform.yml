@@ -14,6 +14,7 @@ jobs:
       PANOS_HOSTNAME: ${{ secrets.PANOS_HOSTNAME }}
       PANOS_USERNAME: ${{ secrets.PANOS_USERNAME }}
       PANOS_PASSWORD: ${{ secrets.PANOS_PASSWORD }}
+      AWS_REGION: "eu-west-2"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
