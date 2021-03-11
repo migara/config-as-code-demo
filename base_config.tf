@@ -5,7 +5,7 @@ resource "panos_panorama_device_group" "this" {
 
 resource "panos_antivirus_security_profile" "example" {
   name         = "av"
-  device_group = panos_panorama_device_group.this
+  device_group = panos_panorama_device_group.this.name
   description  = "example AV profile"
   
   decoder { name = "smtp" }

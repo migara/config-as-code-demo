@@ -1,6 +1,6 @@
 resource "panos_panorama_security_rule_group" "this" {
   
-  device_group = panos_panorama_device_group.this
+  device_group = panos_panorama_device_group.this.name
 
   dynamic "rule" {
     for_each = { for policy in yamldecode(file("./policy.yml")): policy.name => policy }
@@ -15,6 +15,7 @@ resource "panos_panorama_security_rule_group" "this" {
       applications = lookup(rule.value, "applications", ["any"])
       services = lookup(rule.value, "services", ["application-default"])
       categories = lookup(rule.value, "categories", ["any"])
+      virus = panos_antivirus_security_profile.example.name
       action = lookup(rule.value, "action", "allow")
     }
   }
