@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: migara/test-action
+      uses: migara/test-action@v1
       with:
         tests: /tests/panos.rego
         policy: /policy.yml
