@@ -3,7 +3,7 @@ resource "panos_panorama_security_rule_group" "this" {
   device_group = panos_panorama_device_group.this.name
 
   dynamic "rule" {
-    for_each = { for policy in yamldecode(file("./policy.yml")): policy.name => policy }
+    for_each = { for policy in yamldecode(file("./policy.yml")).security_policies: policy.name => policy }
     content {
       name = rule.key
       source_zones = lookup(rule.value, "source_zones", ["any"])

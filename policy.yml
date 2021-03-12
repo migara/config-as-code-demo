@@ -1,3 +1,4 @@
+security_policies:
 - name: "allow dns from apps"
   tags:
     - infra
@@ -12,8 +13,7 @@
   applications:
     - dns
   action: "allow"
-
-
+  
 - name: "allow internet from bizdev"
   tags:
     - internet
