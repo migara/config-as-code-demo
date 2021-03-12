@@ -9,7 +9,7 @@ security_policies:
   destination_zones:
     - dmz
   destination_addresses:
-    - 8.8.8.8
+    - 8.8.8.4
   applications:
     - dns
   action: "allow"
