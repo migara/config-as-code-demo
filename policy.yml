@@ -13,7 +13,6 @@ security_policies:
   applications:
     - dns
   action: "allow"
-
 - name: "allow internet from bizdev"
   tags:
     - internet

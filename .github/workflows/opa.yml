@@ -3,16 +3,18 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Open Policy Agent
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Hello world action step
-      id: hello
+    - name: Evaluate OPA Policy
+      id: opa_eval
       uses: migara/test-action@master
       with:
         tests: /tests/panos.rego
         policy: /policy.yml
-    # Use the output from the `hello` step
-    # - name: Get the output time
-    #   run: echo "The time was ${{ steps.hello.outputs.time }}"
+    - name: Print Results
+      run: |
+        echo $opa_results | jq -r '.result[].expressions[].value'
+      env:
+        opa_results: ${{ steps.opa_eval.outputs.opa_results}}
