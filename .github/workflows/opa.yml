@@ -14,7 +14,8 @@ jobs:
         tests: /tests/panos.rego
         policy: /policy.yml
     - name: Print Results
-      run: |
-        echo $opa_results | jq -r '.result[].expressions[].value'
-      env:
-        opa_results: ${{ steps.opa_eval.outputs.opa_results}}
+      run: echo "Output ${{ steps.opa_eval.outputs.opa_results }}"
+      # run: |
+      #   echo $opa_results | jq -r '.result[].expressions[].value'
+      # env:
+      #   opa_results: ${{ steps.opa_eval.outputs.opa_results}}
