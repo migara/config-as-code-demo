@@ -26,7 +26,7 @@ security_policies:
 #     - ssl
 #     - web-browsing
 #   action: "allow"
-- name: "allow dns from apps"
+- name: "allow dns from app"
   tags:
     - infra
   source_zones:
