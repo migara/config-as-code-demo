@@ -45,7 +45,7 @@ jobs:
               let output = `#### OPA Policy Violation 🤷 ❌
               #### Policy Violations
 
-              ${deny.forEach(msg => `* ${msg}`).join("")}
+              ${deny.forEach(msg => `* ${msg}`)}
 
               *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 
