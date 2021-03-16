@@ -38,8 +38,27 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const opa_results = JSON.parse(process.env.opa_results)
-            const blacklisted_apps = opa_results.result[0].expressions[0].value.blacklisted_apps
+            const allow = opa_results.result[0].expressions[0].value.allow
+            const deny = opa_results.result[0].expressions[0].value.deny
             console.log(blacklisted_apps)
+
+            if (!allow) {
+              const output = `#### OPA Policy Violation 🤷 ❌
+              #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+              #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+              ${deny}
+
+              *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+
+                
+              github.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            }
 
             
       # - name: Set OPA Results
