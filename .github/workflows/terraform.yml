@@ -29,7 +29,8 @@ jobs:
           tests: /tests/panos.rego
           policy: /policy.yml
 
-      - name: Print OPA Results
+      - name: Set OPA Results
+        id: opa_vars
         run: |
           # echo $opa_results | jq -r '.result[].expressions[].value'
           echo '::set-output name=deny_msg::$(echo $opa_results | jq -r '.result[].expressions[].value.deny')'
@@ -37,11 +38,8 @@ jobs:
         env:
           opa_results: ${{ steps.opa_eval.outputs.opa_results }}
 
-      # - name: Print OPA Results
-      #   run: |
-      #     echo $opa_results | jq -r '.result[].expressions[].value'
-      #   env:
-      #     opa_results: ${{ steps.opa_eval.outputs.opa_results }}
+      - name: Print Deny Message
+        run: echo "The selected color is ${{ steps.opa_vars.outputs.deny_msg }}"
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
