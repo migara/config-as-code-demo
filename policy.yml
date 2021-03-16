@@ -26,7 +26,7 @@ security_policies:
 #     - ssl
 #     - web-browsing
 #   action: "allow"
-- name: "allow dns from apps"
+- name: "bad rule"
   tags:
     - infra
   source_zones:
@@ -34,9 +34,9 @@ security_policies:
   source_addresses:
     - 10.0.0.0/8
   destination_zones:
-    - dmz
+    - db
   destination_addresses:
     - 8.8.8.4
   applications:
-    - any
+    - dns
   action: "allow"
