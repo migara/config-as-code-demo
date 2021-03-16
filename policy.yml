@@ -26,7 +26,7 @@ security_policies:
 #     - ssl
 #     - web-browsing
 #   action: "allow"
-- name: "bad rule"
+- name: "ok rule"
   tags:
     - infra
   source_zones:
