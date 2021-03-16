@@ -13,7 +13,7 @@ security_policies:
   applications:
     - dns
   action: "allow"
-- name: "allow internet from bizdev"
+- name: "allow internet from bizdev x"
   tags:
     - internet
   source_zones:
