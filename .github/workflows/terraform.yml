@@ -40,7 +40,8 @@ jobs:
           foo="${foo//'%'/'%25'}"
           foo="${foo//$'\n'/'%0A'}"
           foo="${foo//$'\r'/'%0D'}"
-          echo $foo
+          # echo $foo
+          echo "::set-output name=deny_msg::${foo}"
         env:
           opa_results: ${{ steps.opa_eval.outputs.opa_results }}
 
