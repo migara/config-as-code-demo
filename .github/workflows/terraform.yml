@@ -57,7 +57,7 @@ jobs:
                 body: output
               })
 
-              return -1
+              process.exit(1);
             }
 
       - name: Setup Terraform
