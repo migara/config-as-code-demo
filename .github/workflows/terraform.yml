@@ -37,7 +37,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const opa_results = process.env.opa_results
+            const opa_results = JSON.parse(process.env.opa_results)
             console.log(opa_results.blacklisted_apps)
 
             
