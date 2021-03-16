@@ -21,19 +21,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-    # OPA Checks
-    - name: Evaluate OPA Policy
-      id: opa_eval
-      uses: migara/test-action@master
-      with:
-        tests: /tests/panos.rego
-        policy: /policy.yml
+      # OPA Checks
+      - name: Evaluate OPA Policy
+        id: opa_eval
+        uses: migara/test-action@master
+        with:
+          tests: /tests/panos.rego
+          policy: /policy.yml
 
-    - name: Print OPA Results
-      run: |
-        echo $opa_results | jq -r '.result[].expressions[].value'
-      env:
-        opa_results: ${{ steps.opa_eval.outputs.opa_results }}
+      - name: Print OPA Results
+        run: |
+          # echo $opa_results | jq -r '.result[].expressions[].value'
+          echo '::set-output name=deny_msg::$(echo $opa_results | jq -r '.result[].expressions[].value.deny')'
+          echo '::set-output name=allow::$(echo $opa_results | jq -r '.result[].expressions[].value.allow')'
+        env:
+          opa_results: ${{ steps.opa_eval.outputs.opa_results }}
+
+      # - name: Print OPA Results
+      #   run: |
+      #     echo $opa_results | jq -r '.result[].expressions[].value'
+      #   env:
+      #     opa_results: ${{ steps.opa_eval.outputs.opa_results }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
