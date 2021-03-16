@@ -133,6 +133,11 @@ jobs:
                 repo: context.repo.repo
               })
 
+              github.actions.reRunWorkflow({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: context.run_id
+              });
               
             }
 
