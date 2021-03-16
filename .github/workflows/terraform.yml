@@ -31,7 +31,7 @@ jobs:
 
       - name: Set OPA Results
         uses: actions/github-script@0.9.0
-        if: github.event_name == 'pull_request'
+        # if: github.event_name == 'pull_request'
         env:
           opa_results: ${{ steps.opa_eval.outputs.opa_results }}
         with:
