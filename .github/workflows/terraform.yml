@@ -44,12 +44,8 @@ jobs:
             if (!allow) {
               let output = `#### OPA Policy Violation 🤷 ❌
               #### Policy Violations
-              `
-
-              for (msg in deny) {
-                output += `* ${msg}
-                `
-              }
+              
+              * ${deny}
 
               output += `*Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 
@@ -63,23 +59,6 @@ jobs:
 
               return -1
             }
-
-            
-      # - name: Set OPA Results
-      #   id: opa_vars
-      #   run: |
-      #     # echo $opa_results | jq -r '.result[].expressions[].value'
-      #     # echo "::set-output name=deny_msg::$(echo $opa_results | jq -r '.result[].expressions[].value.blacklisted_apps')"
-      #     # echo '::set-output name=deny_msg::$(echo $opa_results | jq -r '.result[].expressions[].value.blacklisted_apps')'
-      #     # echo '::set-output name=allow::$(echo $opa_results | jq -r '.result[].expressions[].value.allow')'
-      #     foo=$opa_results | jq -r '.result[].expressions[].value.blacklisted_apps'
-      #     foo="${foo//'%'/'%25'}"
-      #     foo="${foo//$'\n'/'%0A'}"
-      #     foo="${foo//$'\r'/'%0D'}"
-      #     # echo $foo
-      #     echo "::set-output name=deny_msg::${foo}"
-      #   env:
-      #     opa_results: ${{ steps.opa_eval.outputs.opa_results }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
