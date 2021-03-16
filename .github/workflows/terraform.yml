@@ -132,6 +132,12 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo
               })
+
+              github.actions.reRunWorkflow({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: github.run_id
+              });
             }
 
       - name: Terraform Plan Status
