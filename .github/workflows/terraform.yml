@@ -42,12 +42,12 @@ jobs:
             const deny = opa_results.result[0].expressions[0].value.deny
 
             if (!allow) {
-              let output = `#### OPA Policy Violation 🤷 ❌
+              const output = `#### OPA Policy Violation 🤷 ❌
               #### Policy Violations
               
               * ${deny}
-
-              output += `*Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+              
+              *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 
                 
               await github.issues.createComment({
