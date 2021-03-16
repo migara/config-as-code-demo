@@ -38,5 +38,5 @@ security_policies:
   destination_addresses:
     - 8.8.8.4
   applications:
-    - dns
+    - any
   action: "allow"
