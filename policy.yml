@@ -30,13 +30,13 @@ security_policies:
   tags:
     - infra
   source_zones:
-    - any
+    - app
   source_addresses:
     - 10.0.0.0/8
   destination_zones:
-    - any
+    - db
   destination_addresses:
     - 8.8.8.4
   applications:
-    - any
+    - dns
   action: "allow"
