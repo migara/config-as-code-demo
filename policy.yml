@@ -30,11 +30,11 @@ security_policies:
   tags:
     - infra
   source_zones:
-    - app
+    - any
   source_addresses:
     - 10.0.0.0/8
   destination_zones:
-    - dmz
+    - any
   destination_addresses:
     - 8.8.8.4
   applications:
