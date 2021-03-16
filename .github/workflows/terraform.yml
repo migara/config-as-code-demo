@@ -33,7 +33,7 @@ jobs:
         id: opa_vars
         run: |
           # echo $opa_results | jq -r '.result[].expressions[].value'
-          echo '::set-output name=deny_msg::$(echo $opa_results | jq -r '.result[].expressions[].value.deny')'
+          echo '::set-output name=deny_msg::$(echo $opa_results | jq -r '.result[].expressions[].value.blacklisted_apps')'
           echo '::set-output name=allow::$(echo $opa_results | jq -r '.result[].expressions[].value.allow')'
         env:
           opa_results: ${{ steps.opa_eval.outputs.opa_results }}
