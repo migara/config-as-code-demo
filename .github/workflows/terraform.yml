@@ -43,11 +43,10 @@ jobs:
 
             if (!allow) {
               const output = `#### OPA Policy Violation 🤷 ❌
-              #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-              #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-
-              ${deny}
-
+              #### Policy Violations
+              
+              * ${deny}
+              
               *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 
                 
