@@ -103,43 +103,37 @@ jobs:
               body: output
             })
 
-      - name: Auto Merge
-        uses: actions/github-script@0.9.0
-        if: github.event_name == 'pull_request'
-        env:
-          opa_results: ${{ steps.opa_eval.outputs.opa_results }}
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const opa_results = JSON.parse(process.env.opa_results)
-            const allow = opa_results.result[0].expressions[0].value.allow
+#       - name: Auto Merge
+#         uses: actions/github-script@0.9.0
+#         if: github.event_name == 'pull_request'
+#         env:
+#           opa_results: ${{ steps.opa_eval.outputs.opa_results }}
+#         with:
+#           github-token: ${{ secrets.GITHUB_TOKEN }}
+#           script: |
+#             const opa_results = JSON.parse(process.env.opa_results)
+#             const allow = opa_results.result[0].expressions[0].value.allow
 
-            if (allow) {
-              const output = `#### Validation Checks Passed ✅
-              ##### Auto Merging.....
+#             if (allow) {
+#               const output = `#### Validation Checks Passed ✅
+#               ##### Auto Merging.....
 
-              *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+#               *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 
-              await github.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: output
-              })
+#               await github.issues.createComment({
+#                 issue_number: context.issue.number,
+#                 owner: context.repo.owner,
+#                 repo: context.repo.repo,
+#                 body: output
+#               })
 
-              await github.pulls.merge({
-                pull_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo
-              })
-
-              github.actions.reRunWorkflow({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                run_id: context.run_id
-              });
+#               await github.pulls.merge({
+#                 pull_number: context.issue.number,
+#                 owner: context.repo.owner,
+#                 repo: context.repo.repo
+#               })
               
-            }
+#             }
 
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
