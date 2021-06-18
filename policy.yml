@@ -25,6 +25,7 @@ security_policies:
   applications:
     - ssl
     - web-browsing
+    - ms-ds-smb
   action: "allow"
 # - name: "bad rule"
 #   tags:
