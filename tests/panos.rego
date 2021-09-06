@@ -25,7 +25,7 @@ deny[msg] {
 deny[msg]{
     some i, j
     rule := input.security_policies[_]
-    unsanctioned_apps[j]
+    rule.applications[i] == unsanctioned_apps[j]
     msg := sprintf("Rule '%v' has a unsanctioned application ID '%v'", [rule.name, rule.applications[i]])
 }
 
@@ -33,8 +33,8 @@ deny[msg]{
 deny[msg]{
     rule := input.security_policies[_]
     some i, j, k
-    disallowed_zones[i].from
-    disallowed_zones[i].to
+    rule.source_zones[j] == disallowed_zones[i].from
+    rule.destination_zones[k] == disallowed_zones[i].to
     msg := sprintf("Rule '%v' from '%v' zone to '%v' zone is not allowed", [rule.name, rule.source_zones[j], rule.destination_zones[k]])
 }
 
