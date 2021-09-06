@@ -26,7 +26,7 @@ deny[msg]{
     some i, j
     rule := input.security_policies[_]
     rule.applications[i] == unsanctioned_apps[j]
-    msg := sprintf("Rule '%v' has a unsanctioned application ID '%v'", [rule.name, rule.applications[i]])
+    msg := sprintf("Rule '%v' has an unsanctioned application ID '%v'", [rule.name, rule.applications[i]])
 }
 
 # Rules that are not zone compliant
