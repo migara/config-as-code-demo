@@ -125,16 +125,8 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 body: output
-              })
+              })       
 
-              /*
-              await github.pulls.merge({
-                pull_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo
-              })
-              */              
-              
             }
 
       - name: Terraform Plan Status
