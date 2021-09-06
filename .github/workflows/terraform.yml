@@ -116,7 +116,6 @@ jobs:
 
             if (allow) {
               const output = `#### Validation Checks Passed ✅
-              ##### Auto Merging.....
 
               *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 
