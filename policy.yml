@@ -19,7 +19,7 @@ security_policies:
   source_zones:
     - bizdev
   source_addresses:
-    - 192.168.10.0/24
+    - 192.168.11.0/24
   destination_zones:
     - untrust
   applications:
