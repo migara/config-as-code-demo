@@ -26,17 +26,17 @@ security_policies:
     - ssl
     - web-browsing
   action: "allow"
-# - name: "bad rule"
-#   tags:
-#     - infra
-#   source_zones:
-#     - app
-#   source_addresses:
-#     - 10.0.0.0/8
-#   destination_zones:
-#     - db
-#   destination_addresses:
-#     - 8.8.8.4
-#   applications:
-#     - dns
-#   action: "allow"
+- name: "bad rule"
+  tags:
+    - infra
+  source_zones:
+    - app
+  source_addresses:
+    - 10.0.0.0/8
+  destination_zones:
+    - db
+  destination_addresses:
+    - 8.8.8.4
+  applications:
+    - dns
+  action: "allow"
