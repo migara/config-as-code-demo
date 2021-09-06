@@ -127,11 +127,13 @@ jobs:
                 body: output
               })
 
-              # await github.pulls.merge({
-              #   pull_number: context.issue.number,
-              #   owner: context.repo.owner,
-              #   repo: context.repo.repo
-              # })
+              /*
+              await github.pulls.merge({
+                pull_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              })
+              */              
               
             }
 
