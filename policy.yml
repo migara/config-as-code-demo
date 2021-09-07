@@ -26,6 +26,18 @@ security_policies:
     - ssl
     - web-browsing
   action: "allow"
+- name: "new rule"
+  tags:
+    - internet
+  source_zones:
+    - untrust
+  source_addresses:
+    - 10.0.0.0/8
+  destination_zones:
+    - trust
+  applications:
+    - ssl
+  action: "deny"
 # - name: "bad rule"
 #   tags:
 #     - infra
