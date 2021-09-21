@@ -31,7 +31,7 @@ jobs:
       - name: Set env to production
         if: endsWith(github.ref, '/production')
         run: |
-        echo "TF_VAR_device_group_name=production" >> $GITHUB_ENV
+          echo "TF_VAR_device_group_name=production" >> $GITHUB_ENV
 
       # OPA Checks
       - name: Evaluate OPA Policy
