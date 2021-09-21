@@ -16,13 +16,22 @@ jobs:
       PANOS_USERNAME: ${{ secrets.PANOS_USERNAME }}
       PANOS_PASSWORD: ${{ secrets.PANOS_PASSWORD }}
       GITHUB_REF: ${{ github.ref }}
-      TF_VAR_device_group_name: ${{ GITHUB_REF##*/ }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: "eu-west-2"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Set env to development
+        if: endsWith(github.ref, '/development')
+        run: |
+          echo "TF_VAR_device_group_name=development" >> $GITHUB_ENV
+
+      - name: Set env to production
+        if: endsWith(github.ref, '/production')
+        run: |
+        echo "TF_VAR_device_group_name=production" >> $GITHUB_ENV
 
       # OPA Checks
       - name: Evaluate OPA Policy
