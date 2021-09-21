@@ -16,7 +16,7 @@ jobs:
       PANOS_USERNAME: ${{ secrets.PANOS_USERNAME }}
       PANOS_PASSWORD: ${{ secrets.PANOS_PASSWORD }}
       GITHUB_REF: ${{ github.ref }}
-      TF_VAR_device_group_name: ${GITHUB_REF##*/}
+      TF_VAR_device_group_name: ${{ GITHUB_REF##*/ }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: "eu-west-2"
