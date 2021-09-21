@@ -86,7 +86,6 @@ jobs:
         id: ws_plan
         if: github.event_name == 'pull_request'
         run: |
-          terraform workspace new ${{ github.base_ref }}
           terraform workspace select ${{ github.base_ref }}
         continue-on-error: true
 
@@ -94,7 +93,6 @@ jobs:
         id: ws_apply
         if: github.event_name == 'push'
         run: |
-          terraform workspace new ${GITHUB_REF##*/}
           terraform workspace select ${GITHUB_REF##*/}
         continue-on-error: true
 
