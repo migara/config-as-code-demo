@@ -24,3 +24,28 @@ resource "panos_antivirus_security_profile" "example" {
   }
 }
 
+resource "panos_panorama_template" "this" {
+  name        = "${var.device_group_name} TPL"
+  description = "${var.device_group_name} template"
+}
+
+resource "panos_panorama_template_stack" "this" {
+  name        = "${var.device_group_name} TPL STK"
+  description = "${var.device_group_name} TPL STK"
+  templates   = [panos_panorama_template.this.name]
+}
+
+resource "panos_panorama_virtual_router" "this" {
+  template    = panos_panorama_template.this.name
+  name        = "vr"
+  static_dist = 15
+}
+
+resource "panos_panorama_static_route_ipv4" "this" {
+  for_each       = { for rt in yamldecode(file("./routes.yml")) : rt.name => rt }
+  template       = panos_panorama_template.this.name
+  virtual_router = panos_panorama_virtual_router.this.name
+  name           = each.key
+  destination    = each.value.destination
+  next_hop       = each.value.next_hop
+}

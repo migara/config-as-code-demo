@@ -24,12 +24,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set env to development
-        if: endsWith(github.ref, '/development')
+        if: endsWith(github.ref, '/development') || endsWith(github.base_ref, 'development')
         run: |
           echo "TF_VAR_device_group_name=development" >> $GITHUB_ENV
 
       - name: Set env to production
-        if: endsWith(github.ref, '/production')
+        if: endsWith(github.ref, '/production') || endsWith(github.base_ref, 'production')
         run: |
           echo "TF_VAR_device_group_name=production" >> $GITHUB_ENV
 
@@ -86,7 +86,6 @@ jobs:
         id: ws_plan
         if: github.event_name == 'pull_request'
         run: |
-          terraform workspace new ${{ github.base_ref }}
           terraform workspace select ${{ github.base_ref }}
         continue-on-error: true
 
@@ -94,7 +93,6 @@ jobs:
         id: ws_apply
         if: github.event_name == 'push'
         run: |
-          terraform workspace new ${GITHUB_REF##*/}
           terraform workspace select ${GITHUB_REF##*/}
         continue-on-error: true
 
