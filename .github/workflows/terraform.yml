@@ -14,8 +14,9 @@ jobs:
       PANOS_HOSTNAME: ${{ secrets.PANOS_HOSTNAME }}
       PANOS_USERNAME: ${{ secrets.PANOS_USERNAME }}
       PANOS_PASSWORD: ${{ secrets.PANOS_PASSWORD }}
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      ASSUME_ROLE: ${{ secrets.ASSUME_ROLE }}
+      # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: "eu-west-2"
     steps:
       - name: Checkout
@@ -59,7 +60,13 @@ jobs:
               console.log(context)
               process.exit(1);
             }
-
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ env.ASSUME_ROLE }}
+          role-session-name: gh-action-role-session
+          aws-region: ${{ env.AWS_REGION }}
+          
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         # with:
