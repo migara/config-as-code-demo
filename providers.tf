@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "regional-training-2021-gh-actions"
+    bucket = "config-as-code-demo"
     key    = "gh-actions-pac"
   }
 }
