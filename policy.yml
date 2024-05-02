@@ -48,7 +48,7 @@ security_policies:
   destination_zones:
     - any
   destination_addresses:
-    - 8.8.8.4
+    - 8.8.8.8
   applications:
     - ms-ds-smb
   action: "allow"
