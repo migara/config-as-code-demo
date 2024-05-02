@@ -2,12 +2,12 @@ terraform {
   required_providers {
     panos = {
       source  = "PaloAltoNetworks/panos"
-      version = "1.8.0"
+      version = "1.11.1"
     }
   }
 
   backend "s3" {
-    bucket = "regional-training-2021-gh-actions"
+    bucket = "config-as-code-demo"
     key    = "gh-actions-pac"
   }
 }
