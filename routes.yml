@@ -4,6 +4,4 @@
 - name: on-prem
   destination: 192.168.0.0/16
   next_hop: 192.168.0.1
-- name: azure
-  destination: 172.16.0.0/16
-  next_hop: 172.16.0.1
+
