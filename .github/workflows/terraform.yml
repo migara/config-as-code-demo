@@ -101,14 +101,14 @@ jobs:
         id: ws_plan
         if: github.event_name == 'pull_request'
         run: |
-          terraform workspace select ${{ github.base_ref }} -or-create
+          terraform workspace select -or-create ${{ github.base_ref }} 
         continue-on-error: true
 
       - name:  Terraform Select Workspace (Apply)
         id: ws_apply
         if: github.event_name == 'push'
         run: |
-          terraform workspace select ${GITHUB_REF##*/} -or-create
+          terraform workspace select -or-create ${GITHUB_REF##*/}
         continue-on-error: true
 
       - name: Terraform Plan
