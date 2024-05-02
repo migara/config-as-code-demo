@@ -32,7 +32,8 @@ jobs:
       - name: Run OPA Tests
         id: opa_eval
         run: |
-          echo "OPA=$(opa eval -i policy.yml -d tests/panos.rego data.panos)" >> "$GITHUB_OUTPUT"
+          result=$(opa eval -i policy.yml -d tests/panos.rego 'data.panos')
+          echo "OPA=${result}" >> "$GITHUB_OUTPUT"
         
 
       - name: Set OPA Results
