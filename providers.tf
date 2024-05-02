@@ -2,7 +2,7 @@ terraform {
   required_providers {
     panos = {
       source  = "PaloAltoNetworks/panos"
-      version = "1.8.0"
+      version = "1.11.1"
     }
   }
 
